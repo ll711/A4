@@ -1,0 +1,10 @@
+~^~DART-T3~^~
+00:4e:35:b8:91:c2~~setup-UEA-wireless~~[ESS]~~2462~~-71
+00:4e:35:bc:99:e4~~dynamic~~[WPA2-PSK-CCMP][ESS]~~2437~~-69
+00:4e:35:bc:99:e1~~~~[WPA2-EAP-CCMP][ESS]~~2437~~-70
+00:4e:35:bc:99:e0~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~2437~~-70
+00:4e:35:b8:ad:d1~~~~[WPA2-EAP-CCMP][ESS]~~5300~~-91
+00:4e:35:bc:99:e2~~setup-UEA-wireless~~[ESS]~~2437~~-70
+00:4e:35:bc:99:e3~~_The Cloud~~[ESS]~~2437~~-71
+
+

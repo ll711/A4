@@ -1,0 +1,121 @@
+~^~NSF01-T3~^~
+00:4e:35:c1:31:91~~~~[WPA2-EAP-CCMP][ESS]~~5600~~-67
+00:4e:35:c1:31:94~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5600~~-66
+00:4e:35:c1:c3:f4~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5200~~-63
+00:4e:35:c1:31:92~~_The Cloud~~[ESS]~~5600~~-67
+00:4e:35:c1:31:93~~setup-UEA-wireless~~[ESS]~~5600~~-67
+00:4e:35:c1:c3:f2~~_The Cloud~~[ESS]~~5200~~-63
+00:4e:35:c1:c3:f3~~setup-UEA-wireless~~[ESS]~~5200~~-64
+00:4e:35:c1:31:90~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5600~~-67
+00:4e:35:c1:c3:f0~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5200~~-64
+00:4e:35:c1:37:d4~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5560~~-77
+00:4e:35:c1:37:d0~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5560~~-77
+00:4e:35:c1:c3:e1~~~~[WPA2-EAP-CCMP][ESS]~~2437~~-73
+7c:57:3c:ca:5f:11~~~~[WPA2-EAP-CCMP][ESS]~~5620~~-80
+00:4e:35:c1:37:d2~~_The Cloud~~[ESS]~~5560~~-77
+00:4e:35:c1:c3:e3~~setup-UEA-wireless~~[ESS]~~2437~~-70
+00:4e:35:c1:c3:e2~~_The Cloud~~[ESS]~~2437~~-71
+00:4e:35:b8:38:e1~~setup-UEA-wireless~~[ESS]~~2462~~-61
+7c:57:3c:ca:5f:12~~_The Cloud~~[ESS]~~5620~~-79
+7c:57:3c:cb:22:54~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5500~~-76
+00:4e:35:c1:37:f0~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5640~~-79
+00:4e:35:c1:37:f1~~~~[WPA2-EAP-CCMP][ESS]~~5640~~-78
+00:4e:35:c1:37:f4~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5640~~-78
+7c:57:3c:cb:22:50~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5500~~-76
+7c:57:3c:ca:5f:14~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5620~~-79
+7c:57:3c:ca:5f:10~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5620~~-80
+00:4e:35:c3:47:54~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5240~~-75
+7c:57:3c:cb:22:53~~setup-UEA-wireless~~[ESS]~~5500~~-76
+00:4e:35:c1:37:f2~~_The Cloud~~[ESS]~~5640~~-78
+7c:57:3c:cb:22:52~~_The Cloud~~[ESS]~~5500~~-76
+00:4e:35:c1:37:f3~~setup-UEA-wireless~~[ESS]~~5640~~-78
+00:4e:35:c3:47:52~~_The Cloud~~[ESS]~~5240~~-76
+00:4e:35:c3:47:53~~setup-UEA-wireless~~[ESS]~~5240~~-76
+7c:57:3c:ca:5f:13~~setup-UEA-wireless~~[ESS]~~5620~~-79
+00:4e:35:c3:47:50~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5240~~-76
+7c:57:3c:ca:3a:14~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5180~~-78
+00:4e:35:85:80:71~~~~[WPA2-EAP-CCMP][ESS]~~5280~~-82
+00:4e:35:85:80:74~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5280~~-81
+7c:57:3c:ca:08:b1~~~~[WPA2-EAP-CCMP][ESS]~~5260~~-85
+7c:57:3c:ca:08:b4~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5260~~-85
+00:4e:35:b8:38:e2~~_The Cloud~~[ESS]~~2462~~-60
+7c:57:3c:cb:22:42~~_The Cloud~~[ESS]~~2462~~-81
+7c:57:3c:cb:22:43~~setup-UEA-wireless~~[ESS]~~2462~~-81
+7c:57:3c:ca:3a:13~~setup-UEA-wireless~~[ESS]~~5180~~-78
+7c:57:3c:ca:3a:12~~_The Cloud~~[ESS]~~5180~~-78
+7c:57:3c:ca:08:b2~~_The Cloud~~[ESS]~~5260~~-85
+7c:57:3c:ca:08:b3~~setup-UEA-wireless~~[ESS]~~5260~~-85
+00:4e:35:85:80:72~~setup-UEA-wireless~~[ESS]~~5280~~-81
+00:4e:35:85:80:73~~_The Cloud~~[ESS]~~5280~~-81
+7c:57:3c:cb:22:51~~~~[WPA2-EAP-CCMP][ESS]~~5500~~-76
+00:4e:35:85:80:70~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5280~~-82
+7c:57:3c:c9:b4:51~~~~[WPA2-EAP-CCMP][ESS]~~5580~~-87
+7c:57:3c:c9:b4:54~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5580~~-87
+7c:57:3c:ca:08:b0~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5260~~-86
+7c:57:3c:c9:b4:53~~setup-UEA-wireless~~[ESS]~~5580~~-87
+7c:57:3c:c9:b4:52~~_The Cloud~~[ESS]~~5580~~-88
+00:4e:35:c1:37:c1~~~~[WPA2-EAP-CCMP][ESS]~~2437~~-85
+00:4e:35:c1:c3:e0~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~2437~~-63
+00:4e:35:c3:94:51~~~~[WPA2-EAP-CCMP][ESS]~~5300~~-89
+00:4e:35:c0:de:13~~setup-UEA-wireless~~[ESS]~~5620~~-83
+00:4e:35:c0:de:12~~_The Cloud~~[ESS]~~5620~~-82
+00:4e:35:c1:37:e4~~dynamic~~[WPA2-PSK-CCMP][ESS]~~2412~~-76
+7c:57:3c:ca:3a:10~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5180~~-78
+7c:57:3c:cb:22:44~~dynamic~~[WPA2-PSK-CCMP][ESS]~~2462~~-81
+7c:57:3c:c9:be:84~~dynamic~~[WPA2-PSK-CCMP][ESS]~~2462~~-84
+00:4e:35:c0:de:11~~~~[WPA2-EAP-CCMP][ESS]~~5620~~-82
+00:4e:35:c0:de:14~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5620~~-81
+7c:57:3c:cb:27:34~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5580~~-90
+00:4e:35:c0:de:10~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5620~~-83
+00:4e:35:c3:6d:91~~~~[WPA2-EAP-CCMP][ESS]~~5660~~-89
+00:4e:35:c3:94:54~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5300~~-88
+00:4e:35:c3:94:50~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5300~~-89
+7c:57:3c:cb:27:31~~~~[WPA2-EAP-CCMP][ESS]~~5580~~-89
+00:4e:35:c1:37:e2~~_The Cloud~~[ESS]~~2412~~-80
+7c:57:3c:ca:b0:43~~setup-UEA-wireless~~[ESS]~~2412~~-85
+7c:57:3c:ca:b0:42~~_The Cloud~~[ESS]~~2412~~-87
+7c:57:3c:cb:27:32~~_The Cloud~~[ESS]~~5580~~-90
+00:4e:35:c3:94:53~~setup-UEA-wireless~~[ESS]~~5300~~-90
+00:4e:35:c3:94:52~~_The Cloud~~[ESS]~~5300~~-88
+7c:57:3c:cb:27:33~~setup-UEA-wireless~~[ESS]~~5580~~-91
+00:4e:35:c3:6d:92~~_The Cloud~~[ESS]~~5660~~-90
+7c:57:3c:c9:be:82~~_The Cloud~~[ESS]~~2462~~-85
+7c:57:3c:db:5a:61~~setup-UEA-wireless~~[ESS]~~2412~~-83
+00:4e:35:c1:31:80~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~2412~~-70
+00:4e:35:c1:31:84~~dynamic~~[WPA2-PSK-CCMP][ESS]~~2412~~-70
+00:4e:35:c1:37:e1~~~~[WPA2-EAP-CCMP][ESS]~~2412~~-85
+00:4e:35:c1:37:c4~~dynamic~~[WPA2-PSK-CCMP][ESS]~~2437~~-84
+7c:57:3c:cb:22:41~~~~[WPA2-EAP-CCMP][ESS]~~2462~~-82
+00:4e:35:c3:6d:94~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5660~~-89
+7c:57:3c:ca:08:a4~~dynamic~~[WPA2-PSK-CCMP][ESS]~~2462~~-87
+00:4e:35:c3:6d:90~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5660~~-89
+00:4e:35:c1:37:e3~~setup-UEA-wireless~~[ESS]~~2412~~-79
+00:4e:35:c1:31:83~~setup-UEA-wireless~~[ESS]~~2412~~-74
+00:4e:35:c1:c3:f1~~~~[WPA2-EAP-CCMP][ESS]~~5200~~-64
+00:4e:35:c1:37:d1~~~~[WPA2-EAP-CCMP][ESS]~~5560~~-77
+7c:57:3c:ca:b0:54~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5660~~-77
+7c:57:3c:ca:b0:50~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5660~~-77
+00:4e:35:c1:31:81~~~~[WPA2-EAP-CCMP][ESS]~~2412~~-75
+00:4e:35:c1:37:e0~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~2412~~-76
+48:4a:e9:6f:5d:74~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5640~~-84
+48:4a:e9:6c:13:70~~eduroam~~[WPA2-EAP-CCMP][ESS][BLE]~~5180~~-89
+48:4a:e9:6d:11:94~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5300~~-89
+48:4a:e9:6c:13:74~~dynamic~~[WPA2-PSK-CCMP][ESS]~~5180~~-89
+48:4a:e9:6c:13:71~~~~[WPA2-EAP-CCMP][ESS]~~5180~~-90
+7c:57:3c:cb:27:21~~~~[WPA2-EAP-CCMP][ESS]~~2437~~-90
+7c:57:3c:c9:b4:41~~~~[WPA2-EAP-CCMP][ESS]~~2412~~-92
+00:4e:35:c1:37:c3~~setup-UEA-wireless~~[ESS]~~2437~~-70
+7c:57:3c:ca:b0:53~~setup-UEA-wireless~~[ESS]~~5660~~-77
+00:4e:35:c1:37:d3~~setup-UEA-wireless~~[ESS]~~5560~~-77
+7c:57:3c:ca:b0:52~~_The Cloud~~[ESS]~~5660~~-77
+00:4e:35:c1:31:82~~_The Cloud~~[ESS]~~2412~~-75
+00:4e:35:c3:47:42~~_The Cloud~~[ESS]~~2412~~-76
+0c:96:e6:9f:7d:4f~~SolsticePod~~[ESS]~~2437~~-82
+7c:57:3c:c9:be:83~~setup-UEA-wireless~~[ESS]~~2462~~-84
+48:4a:e9:6d:11:92~~setup-UEA-wireless~~[ESS]~~5300~~-88
+48:4a:e9:6c:13:73~~_The Cloud~~[ESS]~~5180~~-88
+48:4a:e9:6c:13:72~~setup-UEA-wireless~~[ESS]~~5180~~-89
+48:4a:e9:6d:11:93~~_The Cloud~~[ESS]~~5300~~-90
+00:4e:35:c1:37:c2~~_The Cloud~~[ESS]~~2437~~-85
+
+
