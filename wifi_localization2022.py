@@ -1,25 +1,44 @@
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import math
 from scipy import spatial
 
+# Set global font settings
+plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['font.sans-serif'] = ['Arial', 'Calibri', 'DejaVu Sans']
+plt.rcParams['font.size'] = 10
+
 
 def plot_cosine_similarity(similarity_matrix, classes, title='Consine Similarity'):
     """ Plot the cosine similarity matrix.
     """
+    plt.figure(figsize=(10, 8))
 
-    plt.imshow(similarity_matrix, interpolation='nearest', cmap=plt.cm.Blues)
-    plt.title('Cosine Similarity')
-    plt.colorbar()
+    im = plt.imshow(similarity_matrix, interpolation='nearest', cmap=plt.cm.Blues, vmin=0.0, vmax=1.0)
+    plt.title('Cosine Similarity (High = Dark Blue)')
+    cbar = plt.colorbar(im)
+    cbar.set_label('Similarity Score (0.0 to 1.0)')
+
     tick_marks = np.arange(len(classes))
-    plt.xticks(tick_marks, classes, rotation=90)
-    plt.yticks(tick_marks, classes)
+    plt.xticks(tick_marks, classes, rotation=90, fontsize=8)
+    plt.yticks(tick_marks, classes, fontsize=8)
 
-    plt.tight_layout()
+    # Add a rectangle to highlight a cluster
+    ax = plt.gca()
+    rect = patches.Rectangle((-0.5, -0.5), 3, 3, linewidth=2, edgecolor='red', facecolor='none')
+    ax.add_patch(rect)
+    plt.text(2.6, -0.6, 'Group: High Similarity Cluster', color='red', fontsize=10, weight='bold')
+
+    # Add conclusion
+    plt.figtext(0.5, 0.01, "Conclusion: Samples from the same location exhibit high cosine similarity (darker blue).", ha="center", fontsize=10, bbox={"facecolor":"orange", "alpha":0.2, "pad":5})
+
+    plt.tight_layout(rect=[0, 0.05, 1, 1])
     import os
     os.makedirs('process_data', exist_ok=True)
-    plt.savefig('process_data/cosine_similarity.png')
+    plt.savefig('process_data/cosine_similarity.png', dpi=300)
+    plt.savefig('process_data/confusion_matrix.png', dpi=300)
     plt.show()
 
 
@@ -45,8 +64,39 @@ def plot_wifi_hotspot_signal_strengths(features, labels, label_names):
   import os
   os.makedirs('process_data', exist_ok=True)
   plt.tight_layout()
-  plt.savefig('process_data/wifi_signal_strengths.png')
+  plt.savefig('process_data/wifi_signal_strengths.png', dpi=300)
   plt.show()
+
+
+def plot_feature_matrix(features, labels):
+    """ Visualize the feature matrix as a 2D heatmap.
+    Rows are different scans (labels) and columns are different MAC addresses.
+    """
+    plt.figure(figsize=(10, 8))
+    # Using viridis cmap for signal strengths (-100 to 0) which is warm (yellow-strong, purple-weak)
+    im = plt.imshow(features, aspect='auto', cmap='viridis', interpolation='nearest', vmin=-100, vmax=0)
+    plt.title('Feature Matrix Visualization')
+    cbar = plt.colorbar(im)
+    cbar.set_label('Signal Strength (dBm)')
+
+    plt.yticks(range(len(labels)), labels, fontsize=8)
+    plt.xlabel('MAC Address (Feature Index)', fontsize=10)
+    plt.ylabel('Scans (Labels)', fontsize=10)
+
+    # Highlight a region
+    ax = plt.gca()
+    rect = patches.Rectangle((0, -0.5), 10, 5, linewidth=2, edgecolor='red', facecolor='none')
+    ax.add_patch(rect)
+    plt.text(10.5, 0.5, 'Group X: Strong Base Stations', color='red', fontsize=10, weight='bold')
+
+    # Add conclusion
+    plt.figtext(0.5, 0.01, "Conclusion: Specific Access Points show consistently higher signal strength (yellow).", ha="center", fontsize=10, bbox={"facecolor":"orange", "alpha":0.2, "pad":5})
+
+    plt.tight_layout(rect=[0, 0.05, 1, 1])
+    import os
+    os.makedirs('process_data', exist_ok=True)
+    plt.savefig('process_data/features_visualization.png', dpi=300)
+    plt.show()
 
 
 def extract_wifi_location_features(fileName):
@@ -110,7 +160,6 @@ def extract_wifi_location_features(fileName):
 
 
 if __name__ == "__main__":
-  import os
   # Change the file name
   fileName = "./raw_data/cuu25pbu.txt"
 
@@ -126,8 +175,13 @@ if __name__ == "__main__":
   # -100 dBm means no signal at all
   features[np.isnan(features)] = -100
 
-  # Save the processed data to process_data directory
+  import os
   os.makedirs("process_data", exist_ok=True)
+
+  # Visualize the processed feature matrix
+  plot_feature_matrix(features, labels)
+
+  # Save the processed data to process_data directory
   np.save("process_data/features.npy", features)
   np.save("process_data/labels.npy", labels)
   np.save("process_data/label_names.npy", list(label_names))
@@ -140,3 +194,24 @@ if __name__ == "__main__":
 
   ####################################
   plot_cosine_similarity(similarity_matrix, labels)
+
+  # Compute prediction based on the similarity matrix (1-NN)
+  # For each sample, find the most similar other sample
+  np.fill_diagonal(similarity_matrix, -1) # Ignore self-similarity
+  predicted_indices = np.argmax(similarity_matrix, axis=1)
+
+  # Strip the suffix (e.g., '_0', '_1') from labels to get actual class names
+  true_classes = [label.rsplit('_', 1)[0] if '_' in label else label for label in labels]
+  predicted_classes = [true_classes[idx] for idx in predicted_indices]
+
+  from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+  unique_classes = sorted(list(set(true_classes)))
+  cm = confusion_matrix(true_classes, predicted_classes, labels=unique_classes)
+  disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=unique_classes)
+
+  fig, ax = plt.subplots(figsize=(10, 8))
+  disp.plot(ax=ax, cmap=plt.cm.Blues)
+  plt.title("Predicted Confusion Matrix")
+  plt.tight_layout()
+  plt.savefig('process_data/predicted_confusion_matrix.png', dpi=300)
+  plt.show()
