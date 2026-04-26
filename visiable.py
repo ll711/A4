@@ -1,94 +1,51 @@
-import os
-import pandas as pd
 import numpy as np
-import networkx as nx
 import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
-
-# ============================================
-# 1. Prepare similarity matrix (Load from process_data)
-# ============================================
-
-# Read actual data
-try:
-    sim = np.load('process_data/similarity_matrix.npy')
-    raw_labels = np.load('process_data/labels.npy').tolist()
-    # Make names unique for the graph nodes
-    locations = [f"{label}_{i}" for i, label in enumerate(raw_labels)]
-except FileNotFoundError:
-    print("Error: Could not find data files in process_data folder.")
-    exit()
-
-# Symmetrize if not perfectly symmetric
-sim = (sim + sim.T) / 2
-df_sim = pd.DataFrame(sim, index=locations, columns=locations)
-
-# ============================================
-# 2. Build network graph based on similarity (keep strong connections)
-# ============================================
-G = nx.Graph()
-for loc in locations:
-    G.add_node(loc)
-
-threshold_strong = 0.75   # Similarity > 0.75: thick green line
-threshold_medium = 0.5    # Similarity > 0.5: thin blue line
-# threshold_weak = 0.3    # Similarity > 0.3: gray dotted line (optional)
-
-for i, loc1 in enumerate(locations):
-    for j, loc2 in enumerate(locations):
-        if i < j:   # Upper triangular only to avoid duplicates
-            sim_val = df_sim.loc[loc1, loc2]
-            if sim_val >= threshold_strong:
-                G.add_edge(loc1, loc2, weight=sim_val, style='strong')
-            elif sim_val >= threshold_medium:
-                G.add_edge(loc1, loc2, weight=sim_val, style='medium')
-
-# ============================================
-# 3. Draw graph
-# ============================================
-plt.figure(figsize=(14, 10))
-
-# Use spring_layout
-pos = nx.spring_layout(G, k=2.5, iterations=50, seed=42)
-
-# Draw nodes
-nx.draw_networkx_nodes(G, pos, node_size=1200, node_color='lightblue',
-                       edgecolors='navy', linewidths=1.5)
-
-# Draw labels (use original labes without suffix)
-node_labels = {loc: loc.rsplit('_', 1)[0] for loc in G.nodes()}
-nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=9, font_weight='bold')
-
-# Draw edges
-strong_edges = [(u, v) for u, v, d in G.edges(data=True) if d['style'] == 'strong']
-medium_edges = [(u, v) for u, v, d in G.edges(data=True) if d['style'] == 'medium']
-
-# Strong similarity edges: Green thick lines
-nx.draw_networkx_edges(G, pos, edgelist=strong_edges, width=3.5,
-                       edge_color='forestgreen', alpha=0.9)
-# Medium similarity edges: Blue thin dashed lines
-nx.draw_networkx_edges(G, pos, edgelist=medium_edges, width=1.5,
-                       edge_color='royalblue', alpha=0.6, style='dashed')
-
-# Add legend
-legend_elements = [
-    Rectangle((0, 0), 1, 1, fc="forestgreen", alpha=0.9, label="Strongly Similar (≥0.75)"),
-    Rectangle((0, 0), 1, 1, fc="royalblue", alpha=0.6, label="Moderately Similar (0.5–0.75)"),
-]
-plt.legend(handles=legend_elements, loc='upper left', fontsize=11)
-
-plt.title("WiFi Signal Similarity Between Indoor Locations\n(Stage 3 Design: Intuitive Network View)",
-          fontsize=14, fontweight='bold')
-plt.axis('off')
+from sklearn.manifold import MDS
+from sklearn.metrics.pairwise import cosine_similarity
+import os
+import wifi_localization2022
+if not os.path.exists('./visual'):
+    os.makedirs('./visual')
+features, labels, _ = wifi_localization2022.extract_wifi_location_features('./raw_data/cuu25pbu.txt')
+features[np.isnan(features)] = -100
+# Calculate similarity and distance matrix
+similarity_matrix = cosine_similarity(features)
+distance_matrix = 1 - similarity_matrix
+# MDS to 2D
+mds = MDS(n_components=2, metric='precomputed', random_state=42, n_init=4, init='random')
+coords = mds.fit_transform(distance_matrix)
+# Group by location
+loc_to_coords = {}
+for i, label in enumerate(labels):
+    base_loc = label.split('-')[0]
+    if base_loc not in loc_to_coords:
+        loc_to_coords[base_loc] = []
+    loc_to_coords[base_loc].append(coords[i])
+plt.figure(figsize=(10, 8))
+# Extremely simplified floor plan background concept: just a light grid or bounding box
+# plt.grid(True, linestyle='--', alpha=0.3)
+plt.title('WiFi Fingerprint Constellation', fontsize=16)
+colors = plt.cm.tab10(np.linspace(0, 1, len(loc_to_coords)))
+for (loc, pts), color in zip(loc_to_coords.items(), colors):
+    pts = np.array(pts)
+    centroid = pts.mean(axis=0)
+    # Plot centroid (star)
+    plt.scatter(centroid[0], centroid[1], c=[color], marker='*', s=300, edgecolors='k', zorder=3)
+    # Plot individual samples (small dots)
+    plt.scatter(pts[:, 0], pts[:, 1], c=[color], marker='o', s=50, alpha=0.6, zorder=2)
+    # Connect samples to centroid
+    for p in pts:
+        plt.plot([centroid[0], p[0]], [centroid[1], p[1]], c=color, linestyle=':', alpha=0.5)
+    # Draw a halo (circle) around the centroid containing all points
+    if len(pts) > 1:
+        radius = np.max(np.linalg.norm(pts - centroid, axis=1)) 
+        circle = plt.Circle(centroid, radius * 1.2, color=color, alpha=0.1, zorder=1)
+        plt.gca().add_patch(circle)
+    # Add label next to centroid
+    plt.annotate(loc, (centroid[0], centroid[1]), xytext=(8, 8), textcoords='offset points', fontsize=12, fontweight='bold')
+plt.axis('equal')
+plt.axis('off') # Lo-Fi feel
 plt.tight_layout()
+plt.savefig('./visual/wifi_constellation.png', dpi=300, bbox_inches='tight')
+print('Visualization saved to ./visual/wifi_constellation.png')
 
-# Save image
-os.makedirs('visual', exist_ok=True)
-output_path = os.path.join('visual', 'stage3_similarity_network.png')
-plt.savefig(output_path, dpi=200, bbox_inches='tight')
-plt.show()
-
-print(f"✅ Network graph saved to '{output_path}'")
-print("💡 Explanation: Thick green lines connect locations with highly similar signal features.")
-print("   Blue dashed lines indicate partial similarity.")
-print("   Locations without connections have significantly different signal features.")
